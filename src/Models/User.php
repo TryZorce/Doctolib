@@ -1,20 +1,21 @@
 <?php
+require_once __DIR__ . "/../Classes/Db.php";
 
 class User
 {
-    private $db;
+    private $Db;
 
     public function __construct()
     {
-        $this->db = new Db();
-        $this->db = $this->db->getDb();
+        $this->Db = new Db();
+        $this->Db = $this->Db->getDb();
     }
 
-    public function register($name, $firstname, $email, $password)
+    public function register($last_name, $first_name, $email, $password)
     {
-        $stmt = $this->db->prepare("INSERT INTO users (name, firstname, email, password) VALUES (:name, :firstname, :email, :password)");
-        $stmt->bindParam(':name', $name, PDO::PARAM_STR);
-        $stmt->bindParam(':firstname', $firstname, PDO::PARAM_STR);
+        $stmt = $this->Db->prepare("INSERT INTO users (last_name, first_name, email, password) VALUES (:last_name, :first_name, :email, :password)");
+        $stmt->bindParam(':last_name', $last_name, PDO::PARAM_STR);
+        $stmt->bindParam(':first_name', $first_name, PDO::PARAM_STR);
         $stmt->bindParam(':email', $email, PDO::PARAM_STR);
         $stmt->bindParam(':password', $password, PDO::PARAM_STR);
 
@@ -23,29 +24,30 @@ class User
 
     public function login($email, $password)
     {
-        $stmt = $this->db->prepare("SELECT * FROM users WHERE email = :email");
-        $stmt->bindParam(':email', $email, PDO::PARAM_STR);
+        $sql = "SELECT * FROM users WHERE email = :email";
+        $stmt = $this->Db->prepare($sql);
+        $stmt->bindParam(':email', $email);
         $stmt->execute();
 
         $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
         if ($user && password_verify($password, $user['password'])) {
             return $user;
+        } else {
+            return false;
         }
-
-        return false;
     }
 
     public function getUserById($id)
     {
-        $stmt = $this->db->prepare("SELECT * FROM users WHERE id = :id");
+        $stmt = $this->Db->prepare("SELECT * FROM users WHERE id = :id");
         $stmt->bindParam(':id', $id, PDO::PARAM_INT);
         $stmt->execute();
 
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
-    public function update($id, $name, $firstname, $email, $password)
+    public function update($id, $last_name, $first_name, $email, $password)
     {
         if (!empty($password)) {
             $password = password_hash($password, PASSWORD_DEFAULT);
@@ -53,10 +55,10 @@ class User
             $password = $this->getUserById($id)['password'];
         }
 
-        $stmt = $this->db->prepare("UPDATE users SET name = :name, firstname = :firstname, email = :email, password = :password WHERE id = :id");
+        $stmt = $this->Db->prepare("UPDATE users SET last_name = :last_name, first_name = :first_name, email = :email, password = :password WHERE id = :id");
         $stmt->bindParam(':id', $id, PDO::PARAM_INT);
-        $stmt->bindParam(':name', $name, PDO::PARAM_STR);
-        $stmt->bindParam(':firstname', $firstname, PDO::PARAM_STR);
+        $stmt->bindParam(':last_name', $last_name, PDO::PARAM_STR);
+        $stmt->bindParam(':first_name', $first_name, PDO::PARAM_STR);
         $stmt->bindParam(':email', $email, PDO::PARAM_STR);
         $stmt->bindParam(':password', $password, PDO::PARAM_STR);
         $stmt->execute();
@@ -64,7 +66,7 @@ class User
 
     public function delete($id)
     {
-        $stmt = $this->db->prepare("DELETE FROM users WHERE id = :id");
+        $stmt = $this->Db->prepare("DELETE FROM users WHERE id = :id");
         $stmt->bindParam(':id', $id, PDO::PARAM_INT);
         $stmt->execute();
     }

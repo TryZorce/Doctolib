@@ -5,7 +5,7 @@
 </head>
 <body>
     <h1>Login</h1>
-    <form action="/login" method="POST">
+    <form method="POST" action="../src/Controllers/Login.php">
         <label>Email: <input type="email" name="email" required></label>
         <label>Password: <input type="password" name="password" required></label>
         <button type="submit">Login</button>

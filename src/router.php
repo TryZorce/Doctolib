@@ -9,6 +9,7 @@ $profileController = new ProfileController();
 $deleteAccountController = new DeleteAccountController();
 
 $requestUri = $_SERVER['REQUEST_URI'];
+$requestMethod = $_SERVER['REQUEST_METHOD'];
 
 switch ($requestUri) {
     case URL_HOMEPAGE:

@@ -1,9 +1,9 @@
 <?php
 class DeleteAccountController
-{
+{ Use Response;
     public function index()
     {
-        require_once __DIR__ . "/../views/delete_account.php";
+        $this->render('delete_account');
     }
 
     public function destroy()

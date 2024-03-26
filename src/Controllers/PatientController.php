@@ -2,8 +2,10 @@
 
 class PatientController
 {
+    use Response;
     public function index()
     {
-        echo('<p>test PatientController</p>');
+        
+        $this->render('patient');
     }
 }

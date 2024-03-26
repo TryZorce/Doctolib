@@ -1,29 +1,27 @@
 <?php
 class ProfileController
 {
+    use Response;
     public function index()
-    {
-        if (!isset($_SESSION['user_id'])) {
+    { 
+        $this->render('profile');
+        if (!isset($_SESSION['id'])) {
             header("Location: " . URL_LOGIN);
             return;
         }
 
-        $user = new User();
-        $userData = $user->getUserById($_SESSION['user_id']);
-
-        require_once __DIR__ . "/../views/profile.php";
     }
 
     public function update()
     {
-        if (!isset($_SESSION['user_id'])) {
+        if (!isset($_SESSION['id'])) {
             header("Location: " . URL_LOGIN);
             return;
         }
 
         $user = new User();
         $user->update(
-            $_SESSION['user_id'],
+            $_SESSION['id'],
             $_POST['name'],
             $_POST['firstname'],
             $_POST['email'],

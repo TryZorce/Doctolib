@@ -1,9 +1,10 @@
 <?php
 
 class LogoutController
-{
+{use Response;
     public function logout()
     {
-        echo('<p>test LogoutController</p>');
+        session_destroy();
+        $this->render('logout');
     }
 }

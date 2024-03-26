@@ -7,12 +7,14 @@ function classLoader($className)
     $folderPathRepositories = __DIR__ . '/Repositories/';
     $folderPathControllers = __DIR__ . '/Controllers/';
     $folderPathViews = __DIR__ . '/Views/';
+    $folderPathService = __DIR__ . '/Service/';
 
     $filePathClass = $folderPathClasses . $className . '.php';
     $filePathModel = $folderPathModels . $className . '.php';
     $filePathRepository = $folderPathRepositories . $className . '.php';
     $filePathController = $folderPathControllers . $className . '.php';
-    $folderPathView = $folderPathViews . $className . '.php';
+    $filePathView = $folderPathViews . $className . '.php';
+    $filePathService = $folderPathService . $className . '.php';
 
     if (file_exists($filePathClass)) {
         require $filePathClass;
@@ -22,8 +24,10 @@ function classLoader($className)
         require $filePathRepository;
     } elseif (file_exists($filePathController)) {
         require $filePathController;
-    } elseif (file_exists($folderPathView)) {
-        require $folderPathView;
+    } elseif (file_exists($filePathView)) {
+        require $filePathView;
+    }elseif (file_exists($filePathService)) {
+        require $filePathService;
     }
 }
 
@@ -34,3 +38,6 @@ session_start();
 $db = new Db();
 
 require_once __DIR__ . "/router.php";
+
+
+require_once __DIR__ . '/Service/Response.php';

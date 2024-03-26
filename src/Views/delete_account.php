@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Delete Account</title>
+    <title>Supprimer le compte</title>
 </head>
 <body>
-    <h1>Delete Account</h1>
-    <p>Are you sure you want to delete your account?</p>
+    <h1>Supprimer le compte</h1>
+    <p>Vous êtes sûr de vouloir supprimer votre compte ?</p>
     <form action="/delete_account" method="POST">
-        <button type="submit">Yes, Delete My Account</button>
+        <button type="submit">Supprimer mon compte</button>
     </form>
 </body>
 </html>
