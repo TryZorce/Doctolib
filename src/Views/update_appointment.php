@@ -13,7 +13,7 @@
         <label for="doctor_id">Médecin :</label>
         <select name="doctor_id" id="doctor_id" required>
             <?php foreach ($doctors as $doctor): ?>
-                <option value="<?= $doctor->getId() ?>" <?= $doctor->getId() == $appointment->getDoctorId() ? 'selected' : '' ?>><?= $doctor->getFullName() ?></option>
+                <option value="<?= $doctor->getId() ?>" <?= $doctor->getId() == $appointment->getDoctorId() ? 'selected' : '' ?>><?= $doctor->getName() ?></option>
             <?php endforeach; ?>
         </select>
         <br>
