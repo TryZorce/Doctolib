@@ -10,7 +10,7 @@ function displayFooter()
     </div>
 </footer>
 
-<script src="./script/menu-burger.js"></script>
+<script src="' . SRC_URL . 'Script/script.js"></script>
 </html>
     ';
 }

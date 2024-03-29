@@ -47,7 +47,16 @@ class User
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
-    public function update($id, $last_name, $first_name, $email, $password)
+    public function getUserByEmail($email)
+    {
+        $stmt = $this->Db->prepare("SELECT * FROM users WHERE email = :email");
+        $stmt->bindParam(':email', $email, PDO::PARAM_STR);
+        $stmt->execute();
+
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
+
+    public function update($id, $last_name, $first_name, $email, $phone_number, $address, $gender, $password)
     {
         if (!empty($password)) {
             $password = password_hash($password, PASSWORD_DEFAULT);
@@ -64,10 +73,24 @@ class User
         $stmt->execute();
     }
 
-    public function delete($id)
+    public function delete($email)
     {
-        $stmt = $this->Db->prepare("DELETE FROM users WHERE id = :id");
-        $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+        $stmt = $this->Db->prepare("DELETE FROM appointments WHERE user_id = (SELECT id FROM users WHERE email = :email)");
+        $stmt->bindParam(':email', $email, PDO::PARAM_STR);
+        $stmt->execute();
+    
+        $stmt = $this->Db->prepare("DELETE FROM users WHERE email = :email");
+        $stmt->bindParam(':email', $email, PDO::PARAM_STR);
         $stmt->execute();
     }
+
+    public function getAppointmentsByUserId($user_id)
+{
+    $sql = "SELECT * FROM appointments WHERE user_id = :user_id";
+    $stmt = $this->Db->prepare($sql);
+    $stmt->bindParam(':user_id', $user_id);
+    $stmt->execute();
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
+
 }

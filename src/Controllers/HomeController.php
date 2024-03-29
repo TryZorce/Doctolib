@@ -3,8 +3,8 @@ class HomeController
 {
     use Response;
     public function index()
-    {$this->render('index');
-        echo 'Page d\'accueil';
+    {
+        $this->render('index');
     }
 
     public function pageNotFound()
@@ -12,4 +12,3 @@ class HomeController
         echo '<p>Page introuvable</p>';
     }
 }
-?>

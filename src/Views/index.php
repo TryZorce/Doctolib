@@ -1,12 +1,11 @@
-<!DOCTYPE html>
-<html>
+<?php
 
-<head>
-    <title>Home</title>
-</head>
+include_once __DIR__ . "/../Components/header.php";
+include_once __DIR__ . "/../Components/footer.php";
+displayHeader(); ?>
 
-<body>
-    <h1>Home</h1>
-</body>
 
-</html> 
+
+
+<?php
+displayFooter(); ?>

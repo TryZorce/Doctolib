@@ -8,15 +8,14 @@ function displayHeader()
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bénévolat</title>
-    <link rel="stylesheet" href="styles/style.css">
+    <title>Doctolib</title>
+    <link rel="stylesheet" href="' . SRC_URL . 'Styles/style.css">
 </head>
 
 <body>
     <header class="site-header">
         <div class="container">
-        <img src="./assets/logo-grenoble.png" class="img-link">
-            <h1 class="site-title">Bénévolat</h1>
+            <h1 class="site-title">Doctolib</h1>
             <nav class="site-nav">
                 <div class="burger-menu">
                     <div class="burger-line"></div>
@@ -24,9 +23,8 @@ function displayHeader()
                     <div class="burger-line"></div>
                 </div>
                 <ul class="nav-links">
-                    <li><a href="./index.php">Accueil</a></li>
-                    <li><a href="./benevole_Accueil.php">Bénévole</a></li>
-                    <li><a href="./admin_Login.php">Admin</a></li>
+                    <li><a href="' . URL_HOMEPAGE . '">Accueil</a></li>
+                    <li><a href="' . URL_PROFILE . '">Profile</a></li>
                 </ul>
             </nav>
         </div>

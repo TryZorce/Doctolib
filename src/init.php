@@ -8,6 +8,8 @@ function classLoader($className)
     $folderPathControllers = __DIR__ . '/Controllers/';
     $folderPathViews = __DIR__ . '/Views/';
     $folderPathService = __DIR__ . '/Service/';
+    $folderPathComponents = __DIR__ . '/Components/';
+    $folderPathStyles = __DIR__ . '/Styles/';
 
     $filePathClass = $folderPathClasses . $className . '.php';
     $filePathModel = $folderPathModels . $className . '.php';
@@ -15,6 +17,8 @@ function classLoader($className)
     $filePathController = $folderPathControllers . $className . '.php';
     $filePathView = $folderPathViews . $className . '.php';
     $filePathService = $folderPathService . $className . '.php';
+    $filePathComponents = $folderPathComponents . $className . '.php';
+    $filePathStyles = $folderPathStyles . $className . '.css';
 
     if (file_exists($filePathClass)) {
         require $filePathClass;
@@ -26,8 +30,12 @@ function classLoader($className)
         require $filePathController;
     } elseif (file_exists($filePathView)) {
         require $filePathView;
-    }elseif (file_exists($filePathService)) {
+    } elseif (file_exists($filePathService)) {
         require $filePathService;
+    } elseif (file_exists($filePathComponents)) {
+        require $filePathComponents;
+    } elseif (file_exists($filePathStyles)) {
+        require $filePathStyles;
     }
 }
 

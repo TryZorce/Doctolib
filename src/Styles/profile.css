@@ -1,0 +1,35 @@
+.profile_wrapper{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    input{
+        display: flex;
+        align-items: end;
+    }
+}
+
+.appointment_table {
+    width: 90%;
+    border-collapse: collapse;
+}
+
+.appointment_table th,
+.appointment_table td {
+    padding: 12px;
+    border: 1px solid #ccc;
+    text-align: left;
+}
+
+.appointment_table th {
+    background-color: #f2f2f2;
+    font-weight: bold;
+}
+
+.appointment_table tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+.appointment_table tr:hover {
+    background-color: #ddd;
+}
